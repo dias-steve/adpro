@@ -1,9 +1,10 @@
 import productsTypes from './products.types'
 
 // by default filters is {}
-export const fetchProductsStart = (filters = {}) => ({
+//fetchProductsStart = (filters = {}) 
+export const fetchProductsStart = () => ({
     type: productsTypes.FETCH_PRODUCTS_START,
-    payload: filters
+    //payload: filters
 });
 
 export const setProducts = products => ({

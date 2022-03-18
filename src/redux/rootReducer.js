@@ -5,7 +5,7 @@ import storage from "redux-persist/lib/storage"; // local
 import productsReducer from "./Products/products.reducer";
 
 export const rootReducer = combineReducers({
-  productData: productsReducer,
+  productsData: productsReducer,
 });
 
 const configStorage = {
