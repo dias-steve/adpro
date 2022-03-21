@@ -1,13 +1,14 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { setProducts } from './products.actions';
 import productsTypes from './products.types';
+import { handleFetchProducts } from './products.helpers';
 
 // fecthing products
 
 export function* fetchproducts() {
     console.log('try');
     try {
-        const products = [{id:1},{id:2},{id:3}]
+        const products = yield handleFetchProducts()//[{id:1},{id:2},{id:3}]
 
         yield put (
             setProducts(products)

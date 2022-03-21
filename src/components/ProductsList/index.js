@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { fetchProductsStart } from "../../redux/Products/products.actions";
+import { fetchProductsStart, setProducts } from "../../redux/Products/products.actions";
 import "./styles.scss";
 
 const mapState = ({ productsData }) => ({
@@ -16,13 +16,18 @@ const ProductsList = ({}) => {
       dispatch(
           fetchProductsStart()
       )
+      return (
+        dispatch(
+          setProducts([])
+        )
+      )
   },[]);
 
   return (
     <div className="ProductList">
       <p> Liste des produits</p>
       {products.map((produit,pos)=>{
-          return( <p> produit{produit.id}  </p>)
+          return( <p> produit{produit.id} - {produit.name}  </p>)
       })}
     </div>
   );
