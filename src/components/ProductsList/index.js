@@ -38,9 +38,9 @@ const ProductsList = ({}) => {
         <ul>
           {products.map((produit,pos)=>{
               return( 
-                <li>
+                <li key= {produit.id}>
                   <Link to ={`/product/${produit.id}`}>
-                    <a> produit{produit.id} - {produit.name}  </a>
+                     produit{produit.id} - {produit.name}  
                   </Link>
                 </li>
               )

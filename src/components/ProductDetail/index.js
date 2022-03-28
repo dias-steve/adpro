@@ -39,7 +39,7 @@ const ProductDetail = ({}) => {
         const { id, name, price, images} = product
         
         return(<div className='product-detail'>
-        {images.map((image) => {return <img src={image.src}/>})}
+        {images.map((image) => {return <img src={image.src} key={image.id}/>})}
         <h1>Product detail de id {id}</h1>
         <p>nom du produit {name}</p>
         <p>Prix {price}</p>
