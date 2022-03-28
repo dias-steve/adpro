@@ -1,7 +1,7 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import { setProducts, setProduct } from './products.actions';
 import productsTypes from './products.types';
-import { handleFetchProducts, handleFetchProduct} from './products.helpers';
+import { handleFetchProducts, handleFetchProduct} from '../../api/products.helpers';
 
 // fecthing products
 

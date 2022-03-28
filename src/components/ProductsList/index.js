@@ -1,57 +1,46 @@
-import React, {useEffect, useState} from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { fetchProductsStart, setProducts } from "../../redux/Products/products.actions";
 import "./styles.scss";
-import { handleFetchProducts } from '../../redux/Products/products.helpers';
-
+import { handleFetchProducts } from "../../api/products.helpers";
+import { useQuery } from "react-query";
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 const ProductsList = ({}) => {
- 
-  const dispatch = useDispatch();
-  const [products, setProducts] = useState(null);
+
   const { idcollection } = useParams();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let response = null
-      try{
-          response = await handleFetchProducts();
-      }catch(err){
-          console.log(err)
-      }
-      setProducts(response);
-    };
-  try{
-      fetchData();
-  }catch(err){
-      console.log(err)
-  }
-  },[]);
+  const { isLoading, isFetching, error, data, status } = useQuery(
+    "products",
+    handleFetchProducts
+  );
 
-  if (products){ 
+  if (data) {
     return (
       <div className="ProductList">
         <p> Liste des produits</p>
         <ul>
-          {products.map((produit,pos)=>{
-              return( 
-                <li key= {produit.id}>
-                  <Link to ={`/product/${produit.id}`}>
-                     produit{produit.id} - {produit.name}  
-                  </Link>
-                </li>
-              )
+          {data.map((produit, pos) => {
+            return (
+              <li key={produit.id}>
+                <Link to={`/product/${produit.id}`}>
+                  produit{produit.id} - {produit.name}
+                </Link>
+              </li>
+            );
           })}
         </ul>
       </div>
     );
-  }else{
-    return (<div className="ProductList"> loading </div>)
+  } else {
+    return (
+      <div className="ProductList">
+        {isFetching && "Background Updating"}
+        {isLoading && "Loading..."}
+        {error && error.message}{" "}
+      </div>
+    );
   }
-
 };
 
 export default ProductsList;
