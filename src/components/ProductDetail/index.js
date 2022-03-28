@@ -13,11 +13,14 @@ const ProductDetail = ({}) => {
   const dispatch = useDispatch();
 
   const { idproduct } = useParams();
+
+  //fetching data 
   const { isLoading, isFetching, error, data, status } = useQuery(
     ["product", idproduct],
     () => handleFetchProduct(idproduct)
   );
 
+  
   if (data) {
     console.log(data);
     const { id, name, price, images } = data;

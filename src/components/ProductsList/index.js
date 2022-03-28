@@ -1,18 +1,19 @@
 import React from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import "./styles.scss";
-import { handleFetchProducts } from "../../api/products.helpers";
+import { handleFetchProducts, handleFetchProductsbyCategory } from "../../api/products.helpers";
 import { useQuery } from "react-query";
 const mapState = ({ productsData }) => ({
   products: productsData.products,
 });
 const ProductsList = ({}) => {
 
-  const { idcollection } = useParams();
+  const { idcategory } = useParams();
 
+  //fetching data
   const { isLoading, isFetching, error, data, status } = useQuery(
-    "products",
-    handleFetchProducts
+    ["products-category", idcategory ],
+    () => handleFetchProductsbyCategory(idcategory)
   );
 
   if (data) {
