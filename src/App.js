@@ -8,9 +8,11 @@ import CategoriePage from "./pages/CategoriePage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
 import Cart from './pages/Cart';
+import Checkout from "./pages/Checkout";
 
 import "./default.scss";
 import MainLayout from "./layouts/MainLayout";
+
 
 const queryClient = new QueryClient()
 function App() {
@@ -25,6 +27,7 @@ function App() {
           <Route exact path="/product/:idproduct" element={<ProductPage />} />
           <Route exact path="/contact" element={<ContactPage />} />
           <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/checkout" element={<Checkout/>} />
         </Routes>
         {/* <ReactQueryDevtools initialIsOpen /> */}
         </MainLayout>
