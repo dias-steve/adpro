@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import FormInput from "../forms/FormInput";
 import Button from "./../forms/Button";
 import { CountryDropdown } from "react-country-region-selector";
-
+import { Card, CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import "./styles.scss";
+import { apiInstance } from '../../Utils';
+import { selectCartTotal } from './../../redux/Cart/cart.selector';
+import { createStructuredSelector } from 'reselect';
+import { useSelector } from 'react-redux';
 
 const initialAddressSate = {
   line1: "",
@@ -14,7 +18,19 @@ const initialAddressSate = {
   country: "",
 };
 
+const mapState = createStructuredSelector({
+  total: selectCartTotal
+});
+
 const PaymentDetails = () => {
+
+  // reccupération de cart
+  const stripe = useStripe();
+  const elements = useElements();
+  const { total } = useSelector(mapState);
+
+   
+
   const [billingAddress, setBillingAddress] = useState({
     ...initialAddressSate,
   });
@@ -46,8 +62,8 @@ const PaymentDetails = () => {
     // pour bloquer le rechargement de la page lorsque nous cliquons sur le bouton
     evt.preventDefault();
 
-    //recupperation de l'élément card
-    //const cardElement = elements.getElement('card');
+    // reccupération de la   cart
+    const cardElement = elements.getElement('card');
 
     //validation des données du formulaire
 
@@ -73,12 +89,54 @@ const PaymentDetails = () => {
       console.log(billingAddress)
       return;
     }
+    /*le formulaire est validé */
     console.log("tout bon")
     console.log("shipping")
     console.log(shippingAddress)
     console.log("billing")
     console.log(billingAddress)
+    // on post la data 
+    apiInstance.post('/payments/create', {
+        amount: total *100, // centime 
+        shipping:{
+            name: recipientName,
+            address:{
+              ...shippingAddress
+            }
+          }
+        }).then(({ data:clientSecret }) => {
+            //après validation du back sa retourne la clès secret
+            
+            stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+                billing_details:{
+                    name: nameOnCard,
+                    address: {
+                        ...billingAddress
+                    }
+                }
+            }).then(({ paymentMethod })=>{
+                // on passe au paiement pure 
+                stripe.confirmCardPayment(clientSecret,{
+                    payment_method: paymentMethod.id
+                })
+                .then(({ paymentIntent }) => {
+                    console.log(paymentIntent)
+                });
+            })
+          });
   };
+
+  const configCardElement = {
+      iconStyle:'solid',
+      style: {
+          base:{
+              fontSize: '16px'
+          }
+      },
+      hidePostalCode: true
+  }
   return (
     <div className="paymentDetails">
       <form onSubmit={handleFormSubmit}>
@@ -224,7 +282,14 @@ const PaymentDetails = () => {
             />
           </div>
         </div>
-
+        <div className="group">
+            <h2>
+                Card Details
+            </h2>
+            <CardElement 
+                options={configCardElement}
+            />
+        </div>
      
         <Button type="submit">Pay Now</Button>
       </form>
