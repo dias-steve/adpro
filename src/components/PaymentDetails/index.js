@@ -8,6 +8,7 @@ import { apiInstance } from '../../Utils';
 import { selectCartTotal } from './../../redux/Cart/cart.selector';
 import { createStructuredSelector } from 'reselect';
 import { useSelector } from 'react-redux';
+import { handleCreateOrder, handleCreateprod, handleOrderValidate } from "../../api/order.helpers";
 
 const initialAddressSate = {
   line1: "",
@@ -60,6 +61,7 @@ const PaymentDetails = () => {
 
   const handleFormSubmit = async (evt) => {
     // pour bloquer le rechargement de la page lorsque nous cliquons sur le bouton
+    //afficher roue 
     evt.preventDefault();
 
     // reccupération de la   cart
@@ -95,7 +97,18 @@ const PaymentDetails = () => {
     console.log(shippingAddress)
     console.log("billing")
     console.log(billingAddress)
+
     // on post la data 
+    //order = Creation order(cart) => retourner {id, amount}
+    // tester si order.amount = cart.amount
+    // sinon vider cart  
+
+    
+    const {id: idOrder, total:amount } = await handleCreateOrder();
+    if(idOrder)
+      console.log('order')
+      console.log(idOrder);
+    // si (order)
     apiInstance.post('/payments/create', {
         amount: total *100, // centime 
         shipping:{
@@ -104,7 +117,7 @@ const PaymentDetails = () => {
               ...shippingAddress
             }
           }
-        }).then(({ data:clientSecret }) => {
+        }).then(({ data:clientSecret, error }) => {
             //après validation du back sa retourne la clès secret
             
             stripe.createPaymentMethod({
@@ -116,14 +129,32 @@ const PaymentDetails = () => {
                         ...billingAddress
                     }
                 }
-            }).then(({ paymentMethod })=>{
+            }).then(({ paymentMethod, error })=>{
                 // on passe au paiement pure 
                 stripe.confirmCardPayment(clientSecret,{
                     payment_method: paymentMethod.id
                 })
-                .then(({ paymentIntent }) => {
-                    console.log(paymentIntent)
-                });
+                .then(({ paymentIntent, error }) => {
+                    if(paymentIntent)
+
+                      console.log(paymentIntent)
+                      //clear cart
+                      //numéro de commande =validerOrderpaiment(order, paymentIntent)
+                      //afficher paiement validé numéro de commande retourner à l'accueil
+                      //ne plus afficher la roue
+                      handleOrderValidate(idOrder, paymentIntent);
+                    if(error)
+                      console.log("erreur paiement non validé")
+                      console.log(error)
+                      //ne plus afficher la roue
+                     //indication modification paiement refusé
+
+                })
+
+                if (error){
+                  console.log('create Payment Methode')
+                  console.log(error)
+                }
             })
           });
   };
