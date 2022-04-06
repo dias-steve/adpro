@@ -1,34 +1,29 @@
-const functions = require("firebase-functions");
-const express = require("express");
-const cors = require("cors");
-const stripe = require('stripe')('sk_test_51KQtG6Cxg5PGQKRKWESUbHSAFjDqgZ2lvKvs3okfwlJzMirJOhlGFu5avycevH8jL5LWwlINGEm0ufYSHPzjyfAZ00MlKSouPI');
+const functions = require('firebase-functions');
+const express = require('express');
+const cors = require('cors');
+const stripe = require("stripe")(functions.config().stripe.secret_key);
+
 const app = express();
 
-app.use(cors({origin: true}));
-
+app.use(cors({
+  origin: true
+}));
 app.use(express.json());
 
-// creation rout
-
-app.get("*", (req, res) => {
-  res.status(404).send("404, Not Found.");
-});
-
-// Route payement
-
-app.post("/payments/create", async (req, res) => {
+app.post('/payments/create', async (req, res) => {
   try {
     const { amount, shipping } = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
       shipping,
       amount,
-      currency: 'eur'
+      currency: 'eur',
     });
 
     res
       .status(200)
       .send(paymentIntent.client_secret);
-  } catch(err) {
+
+  } catch (err) {
     res
       .status(500)
       .json({
@@ -37,5 +32,11 @@ app.post("/payments/create", async (req, res) => {
       });
   }
 })
+
+app.get('*', (req, res) => {
+  res
+    .status(404)
+    .send('404, Not Found.');
+});
 
 exports.api = functions.https.onRequest(app);

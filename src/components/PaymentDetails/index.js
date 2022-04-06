@@ -110,13 +110,14 @@ const PaymentDetails = () => {
       console.log(idOrder);
     // si (order)
     apiInstance.post('/payments/create', {
-        amount: total *100, // centime 
+        amount: total *100,
+        idOrder, // centime 
         shipping:{
             name: recipientName,
             address:{
               ...shippingAddress
             }
-          }
+        }
         }).then(({ data:clientSecret, error }) => {
             //après validation du back sa retourne la clès secret
             
