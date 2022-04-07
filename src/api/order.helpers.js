@@ -1,12 +1,14 @@
 export const handleCreateOrder = async () => {
   
-    const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/orders/?consumer_key="+process.env.REACT_APP_WOO_PUBLIC_API+"&consumer_secret="+process.env.REACT_APP_WOO_SECRET_API,{
+    const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/shop",{
      
         // Adding method type
         method: "POST",
          
         // Adding body or contents to send
         body: JSON.stringify({
+          "publickey": process.env.REACT_APP_WOO_PUBLIC_API,
+          "order":{
             "payment_method": "bacs",
             "payment_method_title": "Direct Bank Transfer",
               "customer_note": "livraison au 6eme étage",
@@ -47,7 +49,9 @@ export const handleCreateOrder = async () => {
                 "total": "10.00"
               }
             ]
-        }),
+        }
+        }
+          ),
          
         // Adding headers to the request
         headers: {
@@ -61,19 +65,22 @@ export const handleCreateOrder = async () => {
 
 }
 
-export const handleOrderValidate = async (orderID, paymentIntent) => {
-    const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/orders/"+orderID+"?consumer_key="+process.env.REACT_APP_WOO_PUBLIC_API+"&consumer_secret="+process.env.REACT_APP_WOO_SECRET_API,{
+export const handleOrderValidate = async (orderId, paymentIntent) => {
+    const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/shopvalidation",{
      
         // Adding method type
-        method: "PUT",
+        method: "POST",
          
         // Adding body or contents to send
-        body: JSON.stringify({
-            "set_paid": true,
-            "transaction_id": paymentIntent.id,
-            "payment_method": "card",
-            "payment_method_title": "Card"
-        }),
+        body: JSON.stringify(
+          {
+            "publickey": process.env.REACT_APP_WOO_PUBLIC_API,
+            orderId,
+            paymentIntentId: paymentIntent.id
+
+          }
+
+        ),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }

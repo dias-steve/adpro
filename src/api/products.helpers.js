@@ -10,23 +10,59 @@ export const handleFetchProducts = async () => {
 }
 
 
-export const handleFetchProductsbyCategory = async (idcategory) => {
+export const handleFetchProductsbyCategory = async (categoryId) => {
   
-  const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/products?category="+idcategory+"&status=publish&per_page=100&consumer_key="+process.env.REACT_APP_WOO_PUBLIC_API+"&consumer_secret="+process.env.REACT_APP_WOO_SECRET_API)
+  
+  const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/products/bycategory", {
+     
+    // Adding method type
+    method: "POST",
+     
+    // Adding body or contents to send
+    body: JSON.stringify(
+      {
+        "publickey": process.env.REACT_APP_WOO_PUBLIC_API,
+        categoryId
+      }
+    ),
+     
+    // Adding headers to the request
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
+    }
+  })
   return res.json();
 
       
 
 }
 //fetch product detail
-export const handleFetchProduct = async (idproduct) => {
+export const handleFetchProduct = async (productId) => {
 
        
-        ////"https://woocoreactplugin.local/wp-json/wc/v2/products/?consumer_key=ck_bc8bc21913c80284ef1bc3ff743dbf9c88b59622&consumer_secret=cs_00bcac954138822adfa82502bbab58b4c9d80c7f")//
-      const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/products/"+idproduct+"?status=publish&per_page=100&consumer_key="+process.env.REACT_APP_WOO_PUBLIC_API+"&consumer_secret="+process.env.REACT_APP_WOO_SECRET_API)
+        const res = await fetch(process.env.REACT_APP_WOO_URL_API+"/products/detail", {
+     
+          // Adding method type
+          method: "POST",
+           
+          // Adding body or contents to send
+          body: JSON.stringify(
+            {
+              "publickey": process.env.REACT_APP_WOO_PUBLIC_API,
+              productId
+            }
+          ),
+           
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+        })
         return res.json();
-
-
+      
+            
+      
+      
         
 
     
