@@ -3,12 +3,13 @@ import {useQuery} from "react-query";
 import { handleFetchAllCategories } from '../../api/categories.helpers';
 import { Link } from 'react-router-dom';
 import "./styles.scss";
+import { handleFetchHomeData } from '../../api/homedata.helpers';
 
 const CategoriesList = () => {
 
     const { isLoading, isFetching, error, data, status } = useQuery(
         "categories",
-        handleFetchAllCategories
+        handleFetchHomeData
       );
     
     if(data){
@@ -18,13 +19,10 @@ const CategoriesList = () => {
         <h1>CategorieList</h1>
         {isLoading && <p>loading...</p>}
         {error && <p>error.message</p>}
-        {data && <ul> 
-            {data.map(categorie => 
-            <li key={categorie.id}> 
-                <Link to={`/categorie/${categorie.id}/${categorie.name}`} >{categorie.name}</Link>
-            </li>
-        )}
-        </ul>
+        {data && <div> 
+            
+            <h1>data here</h1>
+        </div>
         }
         
 

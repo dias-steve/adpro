@@ -14,11 +14,22 @@ import "./default.scss";
 import MainLayout from "./layouts/MainLayout";
 
 
-const queryClient = new QueryClient()
+const twentyFourHoursInMs = 1000 * 60 * 60 * 24;
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnmount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: twentyFourHoursInMs,
+    },
+  },
+});
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="App">
+        <div className="main-container" id="main-container">
         <MainLayout>
         <Routes>
           {/* Routes go here */}
