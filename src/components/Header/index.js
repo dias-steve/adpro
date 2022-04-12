@@ -4,6 +4,7 @@ import './styles.scss'
 import { useSelector } from 'react-redux';
 
 import { selectCartItemsCount } from '../../redux/Cart/cart.selector';
+import Logo from './../../assets/logo-blanc.svg';
 
 const mapState = (state) => ({
     totalNumCartItems: selectCartItemsCount(state)
@@ -12,12 +13,12 @@ const Header = () => {
     const {totalNumCartItems } = useSelector(mapState);
     return (
         <header className='header'>
-          <Link to='/cart'>
-              Cart({totalNumCartItems})
-          </Link>
-          <Link to='/'>
-              Home
-          </Link>
+            <ul>
+                <li><span>MENU</span></li>
+                <li><img className="logo" src={Logo}/></li>
+                <li><Link to='/cart'>PANIER({totalNumCartItems})</Link></li>
+            </ul>
+
         </header>
     )
 }

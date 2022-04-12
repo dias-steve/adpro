@@ -1,0 +1,41 @@
+header{
+    display: flex;
+    position: fixed;
+    z-index: 90;
+    width: 100vw;
+    img.logo{
+        height: 30px;
+    }
+    ul{
+        margin-top: 0;
+        
+        padding: 0;
+        display: flex;
+        color: white;
+        font-family: 'Space Mono', monospace;
+        font-weight: 400;
+        font-size: 1.2rem;
+        list-style-type: none;
+        width: 100%;
+
+       
+        align-items: stretch; /* Default */
+        justify-content: space-between;
+       
+        
+      
+        li{
+            display: block;
+            flex: 0 1 auto; /* Default */
+            list-style-type: none;
+            padding: 20px 5% 0% 5%;
+
+        }
+
+       
+        a{
+            color: white;
+            text-decoration: none;
+        }
+    }
+}
