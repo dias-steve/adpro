@@ -13,12 +13,13 @@ const HomePage = (props) => {
     "homeData",
     handleFetchHomeData
   );
-
+  
   if (data) {
     console.log(data);
   }
+
   return (
-    <>
+    <> 
       <Helmet>
         <title>UNADN</title>
       </Helmet>
@@ -27,8 +28,8 @@ const HomePage = (props) => {
         {error && <p>error.message</p>}
         {data && (
           <div>
-            <Hero image={data.image_accueil} logo={data.logo_fond} />
-            <CollectionDigital />
+           <Hero image={data.image_accueil} logo={data.logo_fond} />
+            <CollectionDigital collectionData={data.collection_1} />
             <CollectionComputer />
             <CollectionCaroussel />
           </div>

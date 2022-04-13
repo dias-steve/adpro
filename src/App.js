@@ -38,7 +38,7 @@ function App() {
           <Route exact path="/product/:idproduct" element={<ProductPage />} />
           <Route exact path="/contact" element={<ContactPage />} />
           <Route exact path="/cart" element={<Cart/>} />
-          <Route exact path="/checkout" element={<Checkout/>} />
+          {/*<Route exact path="/checkout" element={<Checkout/>} />*/}
         </Routes>
         {/* <ReactQueryDevtools initialIsOpen /> */}
         </MainLayout>

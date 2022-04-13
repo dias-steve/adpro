@@ -2,11 +2,19 @@ import React from 'react'
 import './styles.scss'
 
 
-const CollectionDigital = (props) => {
+const CollectionDigital = ({collectionData}) => {
+  const hStyle = {
+        background:`url(${collectionData.image_1_accueil})`,
+        backgroundSize: 'cover',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+  };
   return (
-    <section className='DigitalCollection'>
+    <section className='digital-collection'>
 
-    <h1> Digital Collection</h1>
+      <div className='wrapper'>
+        <h1 style={hStyle}> {collectionData.titre_accueil}</h1>
+      </div>
     </section>
   )
 }

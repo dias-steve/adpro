@@ -1,0 +1,30 @@
+section.digital-collection{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    div.wrapper{
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        
+        align-items: center;
+    }
+    h1{
+        position: absolute;
+        clear: both;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0;
+        padding: 0;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 60vh;
+        transform: translateX(-20%);
+        
+   
+      
+    }
+}
