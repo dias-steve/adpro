@@ -1,13 +1,15 @@
 nav{
+    display: flex;
     margin: 0;
     position: fixed;
     z-index: 90;
     width: 100vw;
+    height: 50px;
     color: white;
-    mix-blend-mode: difference;
+    mix-blend-mode: exclusion;
     font-family: 'Space Mono', monospace;
     font-weight: 400;
-
+    align-items: center;
     font-size: 1.2rem;
     @media screen and (max-width: 700px) {
         font-size: 1rem;
@@ -22,13 +24,15 @@ nav{
         justify-self: center;
     
     }
-    ul.menu-principal{
+    
+    div.menu-principal{
+        
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      
         margin-top: 0;
         
         padding: 0;
-        display: flex;
-      
-  
         list-style-type: none;
         width: 100%;
 
@@ -46,10 +50,24 @@ nav{
                 margin-bottom: 10px;
             }
         }
-        li.menu-principal-list{
+        div.left{
+            grid-column: 1 / 1;
+            display: flex;
+            justify-content:left;
+            margin-left: 10%;
+        }
+        div.center{
+            grid-column: 2 / 2;
             display: flex;
             justify-content: center;
         }
+        div.right{
+            grid-column: 3 / 3;
+            display: flex;
+            justify-content: right;
+            margin-right: 10%;
+        }
+
 
        
         a{
@@ -96,8 +114,6 @@ nav{
     .menu-button:hover{
         color: red;
     }
-    button{
 
-    }
 }
 

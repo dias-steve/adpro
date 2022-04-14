@@ -3,7 +3,7 @@ section.hero{
     background-color: black;
     position: relative;
     
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 850px) {
             justify-content: center;
     }
     div.hero-logo{
@@ -25,7 +25,7 @@ section.hero{
         z-index: 9;
         object-fit: cover;
         
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 850px) {
             margin-left: 0;
             margin-top: 0%;
             max-width: 80%;

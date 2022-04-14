@@ -1,0 +1,105 @@
+div.mobile-device{
+    position: absolute;
+   
+    width: 380px;
+    height: 200px;
+    background-color: #CEFFFC;
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+
+    @media screen and (max-width: 500px) {
+        width: 80%;
+    
+    }
+    padding: 15px;
+    div.mobile-device-header{
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        div{
+            display: flex;
+            align-items: center;
+        }
+        div.mobile-device-header-center{
+            grid-column: 2 / 2;
+            display: flex;
+            justify-content: center;
+            font-size: 0.6rem;
+            img{
+                height: 7px;
+            }
+        }
+        div.mobile-device-header-left{
+            grid-column: 1 / 1;
+            display: flex;
+            justify-content:left;
+            
+      
+            font-size: 0.6rem;
+            img{
+                margin-left: 10px;
+                margin-top: -2px;
+                height: 13px;
+            }
+        }
+
+        div.mobile-device-header-right{
+            grid-column: 3 / 3;
+            display: flex;
+            justify-content:right;
+            margin-right: 10%;
+            font-size: 0.5rem;
+            img{
+                height: 20px;
+            }
+        }
+
+    }
+    div.mobile-device-text{
+        margin-top: 20px;
+        span{
+            font-size: 0.7rem;
+        }
+        
+        p.message{
+            font-size: 0.8rem;
+        }
+        p.question{
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+    }
+    div.mobile-device-button-wapper{
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        button{
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 5px;
+            margin: 0;
+            font: inherit;
+            cursor: pointer;
+            &:hover{
+                background: black;
+                color: #CEFFFC;
+            }
+        }
+    }
+
+    .clignote {
+       
+        animation: clignote 2s infinite;
+      }
+      @keyframes clignote {  
+        50% { opacity: 0; }
+      }
+
+
+
+}
