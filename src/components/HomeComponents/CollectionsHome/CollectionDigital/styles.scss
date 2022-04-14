@@ -71,6 +71,10 @@ section.digital-collection{
             margin-top: calc(100vh - 300px);
         
         }
+        @media screen and (max-height: 500px) {
+            margin-top: 10%;
+        
+        }
     }
 
 

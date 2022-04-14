@@ -30,7 +30,7 @@ const HomePage = (props) => {
           <div>
            <Hero image={data.image_accueil} logo={data.logo_fond} />
             <CollectionDigital collectionData={data.collection_1} />
-            <CollectionComputer />
+            <CollectionComputer collectionData={data.collection_2} />
             <CollectionCaroussel />
           </div>
         )}
