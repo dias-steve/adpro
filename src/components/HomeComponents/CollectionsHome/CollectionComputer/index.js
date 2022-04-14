@@ -11,7 +11,7 @@ const CollectionComputer = ({collectionData}) => {
   return (
     <section className='computer-collection'>
     <div className='container-left'>
-      
+      <Photoframe image={image_2_accueil}/>
     </div>
     <div className='container-right' style={divRightStyle}>
       <img src={closeIcon}/>
