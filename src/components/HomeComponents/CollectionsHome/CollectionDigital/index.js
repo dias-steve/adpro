@@ -2,6 +2,7 @@ import React from 'react';
 import Mobile from '../../../mobile';
 import './styles.scss'
 import closeIcon from './../../../../assets/croix-blanc.svg'
+import Photoframe from '../../../Photoframe';
 
 
 const CollectionDigital = ({collectionData}) => {
@@ -21,28 +22,23 @@ const CollectionDigital = ({collectionData}) => {
         <h1 className='digital-collection-title'style={hStyle}> {titre_accueil}</h1>
       </div>
       <div className='photoframe-group'>
-        <Photoframe image={image_2_accueil} />
-        <Photoframe image={image_2_accueil} />
-        <Photoframe image={image_2_accueil} />
+        <div className='photoframe-wrapper digital-collection-photo1'>
+          <Photoframe image={image_2_accueil} />
+        </div>
+        <div className='photoframe-wrapper digital-collection-photo1'>
+          <Photoframe image={image_2_accueil} />
+        </div>
+        <div className='photoframe-wrapper digital-collection-photo1'>
+          <Photoframe image={image_2_accueil} />
+        </div>
+  
       </div>
       <Mobile mobileData= {mobile}/>
     </section>
   )
 }
 
-const Photoframe = ({image}) => {
-  
-  const divStyle = {
-   background:`url(${image})`,
-   backgroundSize: 'cover'
-  };
-  return (
-    <div style={divStyle} className='photoframe'>
-        <img src={closeIcon}/>
 
-    </div>
-  )
-}
 
 
 export default CollectionDigital;

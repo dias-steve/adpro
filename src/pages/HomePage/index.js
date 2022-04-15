@@ -8,18 +8,19 @@ import CollectionComputer from "../../components/HomeComponents/CollectionsHome/
 import CollectionDigital from "../../components/HomeComponents/CollectionsHome/CollectionDigital";
 import CollectionCaroussel from "../../components/HomeComponents/CollectionsHome/CollectionCaroussel";
 import { Helmet } from "react-helmet";
+import Interlude from "../../components/HomeComponents/Interlude";
 const HomePage = (props) => {
   const { isLoading, isFetching, error, data, status } = useQuery(
     "homeData",
     handleFetchHomeData
   );
-  
+
   if (data) {
     console.log(data);
   }
 
   return (
-    <> 
+    <>
       <Helmet>
         <title>UNADN</title>
       </Helmet>
@@ -28,10 +29,11 @@ const HomePage = (props) => {
         {error && <p>error.message</p>}
         {data && (
           <div>
-           <Hero image={data.image_accueil} logo={data.logo_fond} />
+            <Hero image={data.image_accueil} logo={data.logo_fond} />
             <CollectionDigital collectionData={data.collection_1} />
             <CollectionComputer collectionData={data.collection_2} />
-            <CollectionCaroussel />
+            <Interlude text={data.phrase_intermediaire}/>
+            <CollectionCaroussel collectionData={data.collection_3} />
           </div>
         )}
       </div>

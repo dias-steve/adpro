@@ -8,6 +8,10 @@ section.digital-collection{
         
         justify-content: center;
     }
+    @media screen and (max-height: 500px) {
+        align-content: center;
+    
+    }
     div.wrapper{
         display: flex;
         position: relative;
@@ -32,24 +36,11 @@ section.digital-collection{
    
       
     }
-    div.photoframe{
-        position: absolute;
-        height: 400px;
-        width: 300px;
-        display: flex;
-        justify-content: end;
-       img{
-           height: 10px;
-           margin-top: 2px;
-           margin-right: 2px;
-        
-           mix-blend-mode: exclusion;
-        }
- 
-    }
+
     div.photoframe-group{
         position: absolute;
-        margin-top: 10%;
+        margin-top: calc(80vh - 400px);
+        
         display: flex;
        
         margin-left: 20%;
@@ -59,9 +50,15 @@ section.digital-collection{
             
         
         }
+   
     
     }
 
+    div.photoframe-wrapper{
+        height: 400px;
+        width: 300px;
+        position: absolute;
+    }
     div.mobile-device{
         margin-left: calc(100% - 500px);
         margin-top: calc(100vh - 400px);

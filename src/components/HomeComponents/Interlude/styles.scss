@@ -1,0 +1,21 @@
+section.interlude{
+    display: flex;
+    overflow: hidden;
+    background-color: black;
+    h2.interlude-text{
+        clear: both;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 30vh;
+        line-height: auto;
+        color: black;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: red;
+        margin: 5vh;
+    }
+    h2.small{
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,33 @@
+
+section.collection-caroussel{
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    div.caroussel-wrapper{
+        z-index: 1;
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        div.caroussel-image{
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 50%;
+            background-position: center;
+            background-size: cover;
+        }
+   
+    }
+    img.image-over {
+        position: absolute;
+        width: 90%;
+        z-index: 3;
+    
+    }
+    div.mobile-device{
+        z-index: 4;
+    }
+
+}
