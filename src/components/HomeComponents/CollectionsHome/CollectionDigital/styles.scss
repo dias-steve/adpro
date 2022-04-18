@@ -3,6 +3,7 @@ section.digital-collection{
     height: 100%;
     width: 100%;
     overflow: hidden;
+   background-color: #000000;
     @media screen and (max-width: 700px) {
        
         
@@ -31,13 +32,15 @@ section.digital-collection{
         padding: 0;
         font-family: 'Press Start 2P', cursive;
         font-size: 60vh;
-        transform: translateX(-20%);
+        opacity: 0;
+        
         
    
       
     }
 
     div.photoframe-group{
+       
         position: absolute;
         margin-top: calc(80vh - 400px);
         
@@ -45,24 +48,61 @@ section.digital-collection{
        
         margin-left: 20%;
         @media screen and (max-width: 700px) {
-            margin-top: 20%;
-            margin-left: calc(20% - 400px);
-            
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            margin-left: 0;
+            margin-top: 10%;
         
+        }
+        div.digital-collection-photo1{
+            visibility: hidden;
+            position: absolute;
+            margin-left: 25%;
+            margin-top: 25%;
+            z-index: 2;
+            @media screen and (max-width: 700px) {
+                margin-left: 10%;
+                margin-top: 10%;
+            }
+        }
+
+        div.digital-collection-photo3{
+            visibility: hidden;
+            position: absolute;
+            margin-left: 0%;
+            margin-top: 0%;
+            z-index: 4;
+        }
+        div.digital-collection-photo2{
+            visibility: hidden;
+            margin-left: -25%;
+            margin-top: -25%;
+            z-index:3;
+            @media screen and (max-width: 700px) {
+                margin-left: -10%;
+                margin-top: -10%;
+            }
         }
    
     
     }
 
     div.photoframe-wrapper{
+        visibility:visible;
         height: 400px;
         width: 300px;
-        position: absolute;
+        
+    }
+    div.digital-collection-photo2{
+        margin-left: 10%;
+        margin-top: 10%;
     }
     div.mobile-device{
+        visibility: hidden;
         margin-left: calc(100% - 500px);
         margin-top: calc(100vh - 400px);
-        
+        z-index:10;
         @media screen and (max-width: 700px) {
             margin-top: 0;
             margin-left: 0;

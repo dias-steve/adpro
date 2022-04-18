@@ -2,31 +2,37 @@ section.hero{
     display: flex;
     background-color: black;
     position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
     
     @media screen and (max-width: 850px) {
             justify-content: center;
     }
     div.hero-logo{
         display: block;
-        position: absolute;
+       
         height: 100%;
         width: 100%;
  
         z-index: 1;
-        background-size: cover;
-        background-position: 20%;
+        background-size:contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        scale: 3;
     }
     img.hero-img{
    
-        position: relative;
+        position: absolute;
         height: 100%;
         max-width: 69%;
-        margin-left: 20%;
+        margin-right: 20%;
         z-index: 9;
         object-fit: cover;
         
         @media screen and (max-width: 850px) {
             margin-left: 0;
+            margin-right: 0;
             margin-top: 0%;
             max-width: 80%;
             max-height: 80%;

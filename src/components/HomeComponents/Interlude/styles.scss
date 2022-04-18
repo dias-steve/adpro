@@ -1,7 +1,12 @@
 section.interlude{
     display: flex;
+    flex-direction: column;
     overflow: hidden;
-    background-color: black;
+    background-color: #ffffff;
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+   
+
     h2.interlude-text{
         clear: both;
         display: inline-block;
@@ -10,12 +15,13 @@ section.interlude{
         font-family: 'Press Start 2P', cursive;
         font-size: 30vh;
         line-height: auto;
-        color: black;
+        color: #00ff0000 ;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: red;
         margin: 5vh;
     }
-    h2.small{
+    h2.text-small-1{
         font-size: 2rem;
+        transform: translateX(-50%);
     }
 }

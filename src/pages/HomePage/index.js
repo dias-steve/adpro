@@ -9,6 +9,7 @@ import CollectionDigital from "../../components/HomeComponents/CollectionsHome/C
 import CollectionCaroussel from "../../components/HomeComponents/CollectionsHome/CollectionCaroussel";
 import { Helmet } from "react-helmet";
 import Interlude from "../../components/HomeComponents/Interlude";
+import Space from "../../components/HomeComponents/CollectionsHome/Space";
 const HomePage = (props) => {
   const { isLoading, isFetching, error, data, status } = useQuery(
     "homeData",

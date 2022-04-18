@@ -5,54 +5,75 @@ section.computer-collection{
     overflow: hidden;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
     div.container-left{
+      
         height: 100%;
         width: 50%;
-        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 700px) {
+            position: absolute;
+        }
+
     }
 
     div.container-right{
+        visibility: hidden;
         height: 100%;
         width: 50%;
         display: flex;
         justify-content: end;
+        z-index: 2;
+        scale: 0.4;
+        @media screen and (max-width: 700px) {
+            width: 100%;
+            
+        }
         img{
             mix-blend-mode: exclusion;
             height: 10%;
         }
+
       
     }
   
     div .photoframe1{
+       visibility: hidden;
         position: absolute;
-        margin-left: calc(40% - 300px);
-        margin-top: calc(90vh - 400px);
-        z-index: 1;
+        height: 400px;
+        width: 300px;
+        margin-left: 0;
+        margin-top: 0;
+        z-index: 3;
+        @media screen and (max-width: 700px) {
+            margin-left: 0;
+            margin-top: 0;
+           
+        }
     }
 
     div .photoframe2{
+        visibility: hidden;
         position: absolute;
         height: 400px;
         width: 300px;
         margin-left: calc(40% - 300px);
         margin-top: calc(90vh - 400px);
-        z-index: 2;
+        z-index: 4;
+        @media screen and (max-width: 700px) {
+            margin-left: 0;
+            margin-top: 0;
+           
+        }
         
     }
 
-    div .photoframe3{
-        position: absolute;
-        height: 400px;
-        width: 300px;
-        z-index: 3;
-        margin-left: calc(40% - 300px);
-        margin-top: calc(90vh - 400px);
-        
-
-    }
+   
 
     div.mobile-device{
-
+        visibility: hidden;
         z-index: 10;
     }
 }
